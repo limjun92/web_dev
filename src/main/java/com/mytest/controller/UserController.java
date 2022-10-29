@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mytest.dto.user;
-
 import com.mytest.service.UserService;
 
 import lombok.RequiredArgsConstructor;
