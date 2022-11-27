@@ -1,6 +1,7 @@
 <template>
   <h1>준형</h1>
   {{nickname}}
+  {{allUser}}
 </template>
 
 <script>
@@ -13,14 +14,14 @@ export default {
 
     setup(){
         const store = useStore();
-        console.log("?", store)
-        console.log("?", store.state.login.nickname)
-        //const nickname = store.state.login.nickname;
-
         const nickname = computed(() => store.state.login.nickname);
+        console.log(store)
+        store.dispatch('login/all_users');
 
-        console.log("????", nickname)
-        return {nickname};
+        const allUser = computed(() => store.getters['login/getAllUser']);
+        console.log(allUser);
+        //중괄호를 꼭 해야지 보임
+        return {nickname, allUser};
     }
 }
 </script>

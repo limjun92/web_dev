@@ -20,11 +20,14 @@ const getters = {
 
 const actions = {
     all_users(context){
-        axios.post(`${api_url}/user`)
+        axios.get(`${api_url}/user`)
             .then(res => res.data)
             .then(item => (context.commit('setAllUser',item)))
             .catch(error => console.error(error));
     },
+    // login(context, payload){
+
+    // }
 }
 
 const mutations = {
@@ -34,35 +37,10 @@ const mutations = {
 }
 
 export default {
-    state, getters, actions, mutations
+    //[vuex] unknown action type: login/all_users 과 같은 에러가 날때는 아래와 같이 namespaced: true를 지정한다.
+    namespaced: true,
+    state, 
+    getters, 
+    actions, 
+    mutations
 }
-
-
-
-// export default createStore({
-//     state: {
-//         allUsers:{},
-//         name:"JunHyeong"
-//     },
-    
-//     getters: {
-//         getAllUser(state){
-//             return state.allUsers;
-//         },
-//     },
-    
-//     actions: {
-//         all_users(context){
-//             axios.post(`${api_url}/user`)
-//                 .then(res => res.data)
-//                 .then(item => (context.commit('setAllUser',item)))
-//                 .catch(error => console.error(error));
-//         },
-//     },
-    
-//     mutations: {
-//         setAllUser(state, item){
-//             state.allUsers = item;
-//         },
-//     }
-// });

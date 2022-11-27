@@ -2,8 +2,8 @@
   <div class="hello">
     <div>
       <h1>{{ msg }}</h1>
-      <h1 v-text='msg'></h1>
-      <h1 v-html='msg'></h1>
+      <!-- <h1 v-text='msg'></h1> -->
+      <!-- <h1 v-html='msg'></h1> -->
       <img v-bind:src='model.imagePath'>
     </div>
     <div>
