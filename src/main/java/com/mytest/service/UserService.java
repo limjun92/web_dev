@@ -13,10 +13,19 @@ public class UserService{
 	
 	@Autowired
     private userMapper userMapper;
-
+	
+	//alluser
     public List<user> getUserList() {
     	System.out.println("Service");
         return userMapper.getUserList();
     }
     
+    //loginCheck
+    public user userLogin(user UserIdPw) {
+    	System.out.println("loginCheck " + userMapper.userLoginCheck(UserIdPw));
+    	if(userMapper.userLoginCheck(UserIdPw) == 1) {
+    		return userMapper.userLogin(UserIdPw);
+    	}
+    	return null;
+    }   
 }

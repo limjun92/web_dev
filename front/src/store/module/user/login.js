@@ -17,7 +17,7 @@ const getters = {
     getNickName(state){
         return state.nickname;
     },
-    getUser(state){
+    getUserLogin(state){
         return state.user;
     }
 }
@@ -29,10 +29,10 @@ const actions = {
             .then(item => (context.commit('setAllUser',item)))
             .catch(error => console.error(error));
     },
-    login(context, payload){
-            axios.post(`${api_url}/user`, payload)
+    userLogin(context, payload){
+            axios.post(`${api_url}/userLogin`, payload)
             .then(res => res.data)
-            .then(item => (context.commit('setUser',item)))
+            .then(item => (context.commit('setUserLogin',item)))
             .catch(error => console.error(error));
     }
 }
@@ -41,7 +41,7 @@ const mutations = {
     setAllUser(state, item){
         state.allUsers = item;
     },
-    setUser(state, item){
+    setUserLogin(state, item){
         console.log('item', item)
         state.user = item
     }

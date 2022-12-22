@@ -1,9 +1,9 @@
 <template>
     <h1>login</h1>
-    <input type="text" v-model="id">
+    <input type="text" v-model="user_id">
     <input type="text" v-model="password">
     <button v-on:click="login">로그인</button>
-    <h2>{{user.id}}</h2>
+    <h2>{{user.user_nm}}</h2>
 </template>
 
 <script>
@@ -21,26 +21,26 @@ export default {
     setup(){
         const store = useStore();
 
-        const user = computed(() => store.getters['login/getUser']);
+        const user = computed(() => store.getters['login/getUserLogin']);
         return {store, user}
     },
     methods:{
         
         login(){
             
-            console.log(this.id);
+            console.log(this.user_id);
             console.log(this.password);
             console.log(this.store)
             //console.log(setup)
             const loginObj={
-                 id : this.id,
+                 user_id : this.user_id,
                  password : this.password
             }
-            this.store.dispatch('login/login', loginObj);
+            this.store.dispatch('login/userLogin', loginObj);
 
-            const user = computed(() => this.store.getters['login/getUser']);
+            //const user = computed(() => this.store.getters['login/getUserLogin']);
 
-            console.log("user", user)
+            //console.log("user", user)
         }
     }
 }

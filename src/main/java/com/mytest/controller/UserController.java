@@ -34,15 +34,9 @@ public class UserController {
         return userService.getUserList();
     }
     
-    @PostMapping("/user")
-   // public ResponseEntity<?> userLogin(@RequestBody user uservo) {
-	public ResponseEntity<?> userLogin(@RequestBody user uservo) {
-		//System.out.println(uservo);
-		//user re = userService.loginCheck(uservo);
-		System.out.println(uservo.toString());
-		//return ResponseEntity.status(HttpStatus.OK).body(re);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(uservo);
+    @PostMapping("/userLogin")
+	public ResponseEntity<?> userLogin(@RequestBody user UserIdPw) {
+		System.out.println(UserIdPw.toString());
+		return ResponseEntity.status(HttpStatus.OK).body(userService.userLogin(UserIdPw));
 	}
-
 }

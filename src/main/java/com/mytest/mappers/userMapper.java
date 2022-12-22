@@ -11,4 +11,6 @@ import com.mytest.dto.user;
 @Repository
 public interface userMapper {
 	List<user> getUserList();
+	int userLoginCheck(user UserIdPw);
+	user userLogin(user UserIdPw);
 }
