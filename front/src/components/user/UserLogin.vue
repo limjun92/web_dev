@@ -3,10 +3,12 @@
     <input type="text" v-model="id">
     <input type="text" v-model="password">
     <button v-on:click="login">로그인</button>
+    <h2>{{user.id}}</h2>
 </template>
 
 <script>
 import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
 
@@ -18,7 +20,9 @@ export default {
     },
     setup(){
         const store = useStore();
-        return {store}
+
+        const user = computed(() => store.getters['login/getUser']);
+        return {store, user}
     },
     methods:{
         
@@ -28,11 +32,15 @@ export default {
             console.log(this.password);
             console.log(this.store)
             //console.log(setup)
-            // const loginObj={
-            //     id = this.id,
-            //     password = this.password
-            // }
-            // this.store.dispatch('login/all_users', loginObj);
+            const loginObj={
+                 id : this.id,
+                 password : this.password
+            }
+            this.store.dispatch('login/login', loginObj);
+
+            const user = computed(() => this.store.getters['login/getUser']);
+
+            console.log("user", user)
         }
     }
 }

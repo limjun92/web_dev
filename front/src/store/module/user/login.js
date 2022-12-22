@@ -6,6 +6,7 @@ console.log("??")
 
 const state = {
     allUsers:{},
+    user:{},
     nickname:"JunHyeong"
 }
 
@@ -15,25 +16,35 @@ const getters = {
     },
     getNickName(state){
         return state.nickname;
+    },
+    getUser(state){
+        return state.user;
     }
 }
 
 const actions = {
     all_users(context){
-        axios.get(`${api_url}/user`)
+        axios.get(`${api_url}/alluser`)
             .then(res => res.data)
             .then(item => (context.commit('setAllUser',item)))
             .catch(error => console.error(error));
     },
-    // login(context, payload){
-
-    // }
+    login(context, payload){
+            axios.post(`${api_url}/user`, payload)
+            .then(res => res.data)
+            .then(item => (context.commit('setUser',item)))
+            .catch(error => console.error(error));
+    }
 }
 
 const mutations = {
     setAllUser(state, item){
         state.allUsers = item;
     },
+    setUser(state, item){
+        console.log('item', item)
+        state.user = item
+    }
 }
 
 export default {
