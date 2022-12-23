@@ -4,7 +4,7 @@
       <h1>{{ msg }}</h1>
       <!-- <h1 v-text='msg'></h1> -->
       <!-- <h1 v-html='msg'></h1> -->
-      <img v-bind:src='model.imagePath'>
+      <!-- <img v-bind:src='model.imagePath'> -->
     </div>
     <div>
       <input type='text' v-model="name_" placeholder="v-model 예제 이름을 입력하세요">

@@ -14,7 +14,7 @@ export default {
 
     data() {
         return{
-            id:"",
+            user_id:"",
             password:"",
         }
     },
