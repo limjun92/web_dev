@@ -1,6 +1,15 @@
 <template>
     <h2>calendar_??</h2>
-    <!-- <modal> -->
+    <modal>
+        <!-- v-slot 사용법 -->
+        <!-- modalUI.vue와 함께 확인 해야한다. -->
+        <template v-slot:bodys>
+            <span>
+                할일을 입력하세요
+            </span>
+        </template>
+    </modal>
+
     <div>
         
         <h2>{{ year }}</h2>
@@ -29,11 +38,11 @@
 
 <script>
 
-// import modal from '@/components/common/modalUI.vue'
+import modal from '@/components/common/modalUI.vue'
 
 export default {
     components: {
-        // modal,
+        modal,
     },
     data(){
         return{

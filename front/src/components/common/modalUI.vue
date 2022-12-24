@@ -1,7 +1,7 @@
 <template>
     <div class="black_bg">
         <div class="white_bg">
-            <h1>????????????</h1>
+            <slot name = "bodys" />
         </div>
     </div>
 </template>
