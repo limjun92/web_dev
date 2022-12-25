@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mytest.dto.user;
+import com.mytest.dto.User;
 import com.mytest.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,14 +28,14 @@ public class UserController {
     }
 
     @GetMapping("/alluser")
-    public List<user> allUsers() {
+    public List<User> allUsers() {
     	System.out.println("??");
     	System.out.println("Controller");
         return userService.getUserList();
     }
     
     @PostMapping("/userLogin")
-	public ResponseEntity<?> userLogin(@RequestBody user UserIdPw) {
+	public ResponseEntity<?> userLogin(@RequestBody User UserIdPw) {
 		System.out.println(UserIdPw.toString());
 		return ResponseEntity.status(HttpStatus.OK).body(userService.userLogin(UserIdPw));
 	}

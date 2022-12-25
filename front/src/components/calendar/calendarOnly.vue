@@ -1,15 +1,17 @@
 <template>
-    <h2>calendar_??</h2>
     <modal>
+        
         <!-- v-slot 사용법 -->
         <!-- modalUI.vue와 함께 확인 해야한다. -->
         <template v-slot:bodys>
             <span>
                 할일을 입력하세요
+                <toDoList/>
             </span>
         </template>
     </modal>
 
+    <h2>calendar_??</h2>
     <div>
         
         <h2>{{ year }}</h2>
@@ -39,11 +41,22 @@
 <script>
 
 import modal from '@/components/common/modalUI.vue'
+import toDoList from '@/components/toDoList/toDoList.vue'
+
+import {useStore} from "vuex";
+//import {computed} from "vue";
 
 export default {
     components: {
         modal,
+        toDoList,
     },
+
+    setup(){
+        const store = useStore();
+        return {store}
+    },
+
     data(){
         return{
             year:-1,
@@ -53,6 +66,7 @@ export default {
             dates:[],
             date:null,
             openToDo:false,
+
         }
     },
     created(){
@@ -150,7 +164,7 @@ export default {
             }
             console.log(year, month, date)
 
-            this.openToDo = !this.openToDo;
+            this.store.dispatch('modal/modalOpen');
         }
 
     }

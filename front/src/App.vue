@@ -7,6 +7,7 @@
     <router-link to="/">Home</router-link>
     <router-link to="/about">about</router-link>
     <router-link to="/MainCalendar">calendar</router-link>
+    <router-link to="/Board">Board</router-link>
   </div>
   <router-view/>
 </template>
@@ -21,7 +22,7 @@ export default {
   components: {
     // HelloWorld,
     AxiosTest,
-    UserLogin
+    UserLogin,
   }
 }
 </script>

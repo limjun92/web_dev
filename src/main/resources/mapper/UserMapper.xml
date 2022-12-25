@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mytest.mappers.userMapper">
-	<select id="getUserList" resultType="com.mytest.dto.user">
+<mapper namespace="com.mytest.mappers.UserMapper">
+	<select id="getUserList" resultType="com.mytest.dto.User">
 	   SELECT * FROM user;
 	</select>
   
   
-	<select id="userLoginCheck" parameterType="user" resultType="Integer">
+	<select id="userLoginCheck" parameterType="User" resultType="Integer">
 		select count(*)
 		from user
 		where user_Id = #{user_id} and Password = #{password}
 	</select>
 	
-	<select id="userLogin" parameterType="user" resultType="user">
+	<select id="userLogin" parameterType="User" resultType="User">
 		select *
 		from user
 		where user_Id = #{user_id} and Password = #{password}
