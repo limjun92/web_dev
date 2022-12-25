@@ -1,7 +1,12 @@
+# 구현
+
 * todo list
+* 일기_게시판
+* 일정
 * 사진
-* 일기
 * 달력
+
+# install
 
 * Git-2.39.0.2-64-bit
 * jdk-19_windows-x64_bin
