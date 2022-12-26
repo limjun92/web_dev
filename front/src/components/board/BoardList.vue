@@ -2,7 +2,7 @@
     <h1>BoardList</h1>
     {{boardList}}
     <div>
-        <table class = 'calendal'>
+        <table class = 'boardList'>
             <thead>
                 <tr>
                     <th>타이틀</th>
@@ -43,6 +43,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.boardList{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border:1px solid;
+}
 </style>

@@ -2,7 +2,8 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home_h.vue";
 import PostDetail from "../views/PostDetail.vue";
 import MainCalendar from "../views/MainCalendar.vue";
-import Board from "../views/Board.vue";
+import BoardMain from "../views/BoardMain.vue";
+import boardDetail from "../components/board/boardDetail"
 
 const routes = [
   {
@@ -23,7 +24,14 @@ const routes = [
   {
     path: "/Board",
     name: "Board",
-    component: Board,
+
+    component: BoardMain,
+  },
+  {
+    path: "/boardDetail",
+    name: "boardDetail",
+
+    component: boardDetail,
   },
 ];
 
