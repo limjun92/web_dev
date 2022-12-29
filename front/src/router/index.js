@@ -3,7 +3,7 @@ import Home from "../views/Home_h.vue";
 import PostDetail from "../views/PostDetail.vue";
 import MainCalendar from "../views/MainCalendar.vue";
 import BoardMain from "../views/BoardMain.vue";
-import boardDetail from "../components/board/boardDetail"
+import BoardDetail from "../views/BoardDetail.vue";
 
 const routes = [
   {
@@ -24,15 +24,17 @@ const routes = [
   {
     path: "/Board",
     name: "Board",
-
     component: BoardMain,
+    children:[
+      {path : ':id', name: BoardDetail, component: BoardDetail}
+    ],
   },
-  {
-    path: "/boardDetail",
-    name: "boardDetail",
+  // {
+  //   path: "/boardDetail",
+  //   name: "boardDetail",
 
-    component: boardDetail,
-  },
+  //   component: boardDetail,
+  // },
 ];
 
 const router = createRouter({

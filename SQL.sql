@@ -1,36 +1,4 @@
-drop table all_sell_info;
 
-CREATE TABLE all_sell_info (
-	 seq           INT NOT NULL AUTO_INCREMENT,
-     coinname      varchar(20),
-     uuid          varchar(100) default "XX",
-	 volume        float,
-	 price         float,
-	 pay           float,
-     sellflag      BOOLEAN default false,
-	 created_dt    DATETIME DEFAULT CURRENT_TIMESTAMP,
-     updated_dt    DATETIME ON UPDATE CURRENT_TIMESTAMP,
-     done          BOOLEAN default false,
-     PRIMARY KEY(seq)
-);
-
-insert into all_sell_info(uuid, volume, price, pay, created_dt) values("asdasdasda", 280, 100, 40, "2022-04-03T21:58:13+09:00");
-
-select *
-from all_sell_info;
-
-select count(*)
-from all_sell_info;
-
-delete from all_sell_info
-where seq = 1;
-
-use coin;
-
-use mysql;
-
-select host, user
-from user;
 
 use world;
 
