@@ -26,6 +26,7 @@
 
 * Git-2.39.0.2-64-bit
 * jdk-19_windows-x64_bin
+ * https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html
 * spring-tool-suite-4-4.17.0.RELEASE-e4.26.0-win32.win32.x86_64.self-extracting
 * VSCodeUserSetup-x64-1.74.2
 * node-v18.12.1-x64
