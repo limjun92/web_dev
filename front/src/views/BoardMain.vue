@@ -10,7 +10,7 @@
 import boardList from '@/components/board/boardList.vue'
 
 export default {
-    name: 'MainCalendar',
+    name: 'MainBoard',
     components: {
         boardList,
     }

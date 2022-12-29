@@ -3,7 +3,7 @@ import Home from "../views/Home_h.vue";
 import PostDetail from "../views/PostDetail.vue";
 import MainCalendar from "../views/MainCalendar.vue";
 import BoardMain from "../views/BoardMain.vue";
-import BoardDetail from "../views/BoardDetail.vue";
+import BoardDetail from "../components/board/boardDetail.vue";
 
 const routes = [
   {
@@ -26,7 +26,7 @@ const routes = [
     name: "Board",
     component: BoardMain,
     children:[
-      {path : ':id', name: BoardDetail, component: BoardDetail}
+      {path : ':id', name: BoardDetail, component: BoardDetail, props: true}
     ],
   },
   // {

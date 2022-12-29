@@ -15,8 +15,8 @@ const getters = {
 }
 
 const actions = {
-    BoardList(context){
-            axios.get(`${api_url}/BoardList`)
+    BoardList(context, storeObj){
+            axios.get(`${api_url}/BoardList/${storeObj.pageNum}/${storeObj.pageSize}`)
             .then(res => res.data)
             .then(item => (context.commit('setBoardList',item)))
             .catch(error => console.error(error));

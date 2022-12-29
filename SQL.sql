@@ -40,9 +40,22 @@ CREATE TABLE board
 insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","첫게시물","안녕하세요 반가워요",now(),now());
 insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","두번째게시물","싫어요 안해요",now(),now());
 insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","세번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","4번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","5번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","6번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","7번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","8번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","9번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","10번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","11번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","12번째게시물","힘들어요 피곤해요",now(),now());
+insert into board(Writer, Title, Content, Created_Dt, Updated_Dt) value("jh0508","13번째게시물","힘들어요 피곤해요",now(),now());
+
 
 select *
 from board;
+
+SELECT * FROM board ORDER BY created_dt desc limit 0, 5;
 
 
 

@@ -1,11 +1,19 @@
 <template>
-  <h1>boardDetail</h1>
+  <h1>BoardDetail</h1>
+  <boardDetail/>
 </template>
 
 <script>
-export default {
 
+import boardDetail from '@/components/board/boardDetail.vue'
+
+export default {
+    name: 'boardDetail',
+    components: {
+      boardDetail,
+    }
 }
+
 </script>
 
 <style>
