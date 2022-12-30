@@ -2,20 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mytest.mappers.BoardMapper">
-	<select id="getBoardList" parameterType="Map" resultType="com.mytest.dto.Board">
-	   SELECT * FROM board ORDER BY created_dt desc limit #{pageStartNum}, #{pageSize};
+	<select id="getBoardList" parameterType="BoardSearch" resultMap="boardInfo">
+	   SELECT user.User_Id,
+	   		  board.Title,
+	   		  board.User_Id,
+	   		  board.Content,
+	   		  board.Created_Dt
+	   FROM board JOIN user ON board.User_Id = user.User_Id
+	   WHERE board.User_Id = #{user_id} 
+	   ORDER BY board.Created_Dt desc 
+	   limit #{page_start_num}, #{page_size}
 	</select>
-	
-	<select id="getSelectBoardList" resultType="com.mytest.dto.Board" parameterType="java.lang.String">
-	   SELECT Board_id, Title, Content, Created_Dt, Updated_Dt
-	   FROM board 
-	   where Writer = #{Writer};
-	</select>
-	
 
-	
-	
-	<resultMap id="getBoardSearchList" type="com.mytest.dto.User">
-		<association property="user_id" column="Writer" select="com.mytest.mappers.BoardMapper.getBoardList"></association>
+	<resultMap type = "User" id="boardInfo">
+		<result column = "User_Id" property="user_id"/>
+		<collection column = "User_Id" property="board" javaType="java.util.ArrayList" ofType="Board">
+			<result column = "Title" property="Title"/>
+			<result column = "User_Id" property="User_Id"/>
+			<result column = "Content" property="Content"/>
+			<result column = "Created_Dt" property="Created_Dt"/>
+		</collection>
 	</resultMap>
+	
+	
 </mapper>

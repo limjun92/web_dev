@@ -17,7 +17,7 @@ const getters = {
 const actions = {
     //게시글 리스트 가져오기
     BoardList(context, storeObj){
-            axios.get(`${api_url}/BoardList/${storeObj.pageNum}/${storeObj.pageSize}`)
+            axios.get(`${api_url}/BoardList/${storeObj.pageNum}/${storeObj.pageSize}/${storeObj.user_id}`)
             .then(res => res.data)
             .then(item => (context.commit('setBoardList',item)))
             .catch(error => console.error(error));

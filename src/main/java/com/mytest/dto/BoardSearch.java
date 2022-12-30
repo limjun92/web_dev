@@ -4,9 +4,15 @@ import lombok.Data;
 
 @Data
 public class BoardSearch {
-	private String Writer_id;
-	private String Title;
-	private String Content;
-	private int BoardNum;
-	private Board boardList;
+
+	private int page_start_num;
+	private int page_size;
+	private String user_id;
+	
+	public BoardSearch(int page_start_num, int page_size, String user_id) {
+		
+		this.page_start_num = page_start_num;
+		this.page_size = page_size;
+		this.user_id = user_id;
+	}
 }

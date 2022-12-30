@@ -1,6 +1,5 @@
 <template>
     <h1>BoardList</h1>
-    {{boardList}}
     <div>
         <table class = 'boardList'>
             <thead>
@@ -11,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(board, index) in boardList" :key="index">
+                <tr v-for="(board, index) in boardList[0].board" :key="index">
                     <td>
                         <!-- <li><router-link to="/Board/1">{{board.title}}</router-link></li> -->
                         <li @click="$router.push('/Board/'+ board.board_id)">{{board.title}}</li>
@@ -19,7 +18,7 @@
                     <td>{{board.created_Dt}}
  
                     </td>
-                    <td>{{board.writer}}
+                    <td>{{board.User_Id}}
  
                     </td>
                 </tr>
@@ -27,7 +26,6 @@
         </table>
         <button :disabled="beforePageDisAble" v-on:click="beforePage()">이전</button><button v-on:click="NextPage()">이후</button>
         {{ pageNum }}
-        {{ user }}
     </div>
     <router-view/>
 </template>
@@ -53,6 +51,7 @@ export default {
         const storeObj = {
             pageNum : 1,
             pageSize : 5,
+            user_id : user.value.user_id,
         }
         //게시글 리스트 가져오기
         store.dispatch('board/BoardList', storeObj);
@@ -74,9 +73,11 @@ export default {
         //다음페이지로 가기
         NextPage(){
             this.pageNum += 1;
+            console.log("next", this.user.user_id)
             const storeObj = {
                 pageNum : this.pageNum,
-                pageSize : this.pageSize
+                pageSize : this.pageSize,
+                user_id : this.user.user_id,
             }
 
             this.store.dispatch('board/BoardList', storeObj);
@@ -95,7 +96,8 @@ export default {
 
             const storeObj = {
                 pageNum : this.pageNum,
-                pageSize : this.pageSize
+                pageSize : this.pageSize,
+                user_id : this.user.user_id,
             }
 
             this.store.dispatch('board/BoardList', storeObj);

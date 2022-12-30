@@ -19,9 +19,10 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-    @GetMapping("/BoardList/{pageNum}/{pageSize}")
-    public List<Board> getBoardList(@PathVariable int pageNum, @PathVariable int pageSize) {
-    	System.out.println("Board_List " + pageSize);
-        return boardService.getBoardList(pageNum, pageSize);
+    @GetMapping("/BoardList/{pageNum}/{pageSize}/{user_id}")
+    public List<Board> getBoardList(@PathVariable int pageNum, @PathVariable int pageSize, @PathVariable String user_id) {
+    	System.out.println("Board_List " + pageSize + " " + pageNum + " " + user_id);
+    	
+        return boardService.getBoardList(pageNum, pageSize, user_id);
     }
 }

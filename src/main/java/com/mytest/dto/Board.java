@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Board {
 	private int Board_id;
-	private String Writer;
+	private String User_Id;
 	private String Title;
 	private String Content;
 	private Timestamp Created_Dt;

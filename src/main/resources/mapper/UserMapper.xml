@@ -13,26 +13,27 @@
 		where User_Id = #{user_id} and Password = #{password}
 	</select>
 	
+	<!--
 	<select id="userLogin" parameterType="User" resultMap="getBoardSearchList">
 		select *
 		from user
 		where User_Id = #{user_id} and Password = #{password}
 	</select>
-	
+	-->
 	
 	<!-- property = User가 가지고 있는 변수 board -->
 	<!-- column = User가 BoardMapper.getSelectBoardList 로 넘겨줄 변수 user_id -> user_id와 게시글 작성자 Writer와 박치기 하기위해-->
 	
-	<resultMap id="getBoardSearchList" type="com.mytest.dto.User">
-		<association property="board" column="User_Id" select="com.mytest.mappers.BoardMapper.getSelectBoardList"></association>
-	</resultMap>
-	
-	
 	<!--
+	<resultMap id="getBoardSearchList" type="com.mytest.dto.User">
+		<association property="board" column="user_id" select="com.mytest.mappers.BoardMapper.getSelectBoardList"></association>
+	</resultMap>
+	-->
+	
 	<select id="userLogin" parameterType="User" resultType="User">
 		select *
 		from user
 		where User_Id = #{user_id} and Password = #{password}
 	</select>
-	-->
+	
 </mapper>
