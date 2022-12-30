@@ -27,6 +27,7 @@
         </table>
         <button :disabled="beforePageDisAble" v-on:click="beforePage()">이전</button><button v-on:click="NextPage()">이후</button>
         {{ pageNum }}
+        {{ user }}
     </div>
     <router-view/>
 </template>
@@ -45,16 +46,19 @@ export default {
     setup(){
         const store = useStore();
 
+        const user = computed(() => store.getters['login/getUserLogin']);
+
+        console.log("user ", user.value.row_id)
         //1 처음에는 항상 1페이지 5개를 보여준다.
         const storeObj = {
             pageNum : 1,
             pageSize : 5,
         }
-
+        //게시글 리스트 가져오기
         store.dispatch('board/BoardList', storeObj);
-
         const boardList = computed(() => store.getters['board/getBoardList']);
-        return {store, boardList}
+        
+        return {store, boardList, user}
     },
     computed:{
         //pageNum을 체크해서 1페이지일때 이전 페이지로 이동 못하도록 한다.

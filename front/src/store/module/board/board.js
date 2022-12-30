@@ -15,6 +15,7 @@ const getters = {
 }
 
 const actions = {
+    //게시글 리스트 가져오기
     BoardList(context, storeObj){
             axios.get(`${api_url}/BoardList/${storeObj.pageNum}/${storeObj.pageSize}`)
             .then(res => res.data)

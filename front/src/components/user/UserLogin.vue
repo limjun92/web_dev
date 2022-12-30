@@ -33,8 +33,8 @@ export default {
             console.log(this.store)
             //console.log(setup)
             const loginObj={
-                 user_id : this.user_id,
-                 password : this.password
+                user_id : this.user_id,
+                password : this.password
             }
             this.store.dispatch('login/userLogin', loginObj);
 

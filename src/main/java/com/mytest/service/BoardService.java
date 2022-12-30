@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mytest.dto.Board;
+import com.mytest.dto.BoardSearch;
+import com.mytest.dto.User;
 import com.mytest.mappers.BoardMapper;
 
 @Service
@@ -23,6 +25,11 @@ public class BoardService {
     	paging.put("pageStartNum", (pageNum-1) * 5);
     	paging.put("pageSize", pageSize);
     	System.out.println(paging.get("pageStartNum") + " " + paging.get("pageSize"));
+    	
+    	System.out.println("==================");
+    	
+    	
         return boardMapper.getBoardList(paging);
     }
+    
 }

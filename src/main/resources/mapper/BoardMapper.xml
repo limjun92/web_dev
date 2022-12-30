@@ -5,4 +5,17 @@
 	<select id="getBoardList" parameterType="Map" resultType="com.mytest.dto.Board">
 	   SELECT * FROM board ORDER BY created_dt desc limit #{pageStartNum}, #{pageSize};
 	</select>
+	
+	<select id="getSelectBoardList" resultType="com.mytest.dto.Board" parameterType="java.lang.String">
+	   SELECT Board_id, Title, Content, Created_Dt, Updated_Dt
+	   FROM board 
+	   where Writer = #{Writer};
+	</select>
+	
+
+	
+	
+	<resultMap id="getBoardSearchList" type="com.mytest.dto.User">
+		<association property="user_id" column="Writer" select="com.mytest.mappers.BoardMapper.getBoardList"></association>
+	</resultMap>
 </mapper>

@@ -22,10 +22,13 @@ public class UserService{
     
     //loginCheck
     public User userLogin(User UserIdPw) {
-    	System.out.println("loginCheck " + userMapper.userLoginCheck(UserIdPw));
     	if(userMapper.userLoginCheck(UserIdPw) == 1) {
+    		System.out.println("??");
+    		System.out.println(UserIdPw.toString());
+    		System.out.println(userMapper.userLogin(UserIdPw));
     		return userMapper.userLogin(UserIdPw);
     	}
+    	System.out.println("????");
     	return null;
     }   
 }
