@@ -20,7 +20,7 @@ public class BoardService {
 	
 	//allBoard
 	//mybatis parameterType여러개 추가하고 싶을때는 map을 활용한다.
-    public List<Board> getBoardList(int pageNum, int pageSize, String user_id) {
+    public User getBoardList(int pageNum, int pageSize, String user_id) {
     	//Map<String, Integer> paging = new HashMap<>();
     	//paging.put("pageStartNum", (pageNum-1) * 5);
     	//paging.put("pageSize", pageSize);
@@ -28,9 +28,9 @@ public class BoardService {
     	//System.out.println(paging.get("pageStartNum") + " " + paging.get("pageSize"));
     	
     	System.out.println("==================");
-    	BoardSearch b = new BoardSearch(pageNum, pageSize, user_id);
+    	User BoardList = boardMapper.getBoardList(new BoardSearch((pageNum-1) * 5, pageSize, user_id));
     	
-        return boardMapper.getBoardList(new BoardSearch((pageNum-1) * 5, pageSize, user_id));
+        return BoardList;
     }
     
 }

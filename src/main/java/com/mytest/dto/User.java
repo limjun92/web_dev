@@ -13,6 +13,6 @@ public class User {
     private String user_phone_num;
     private String user_email; 
     private String birth_dt;
-    private int boardNum;
+    private int board_count;
     private List<Board> board;
 }

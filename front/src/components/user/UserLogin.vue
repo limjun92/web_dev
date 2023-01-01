@@ -1,17 +1,22 @@
 <template>
     <h1>login</h1>
-    <input type="text" v-model="user_id">
-    <input type="text" v-model="password">
-    <button v-on:click="login">로그인</button>
-    <h2>{{user.user_nm}}</h2>
+    <div v-if="state.user.user_nm">
+        안녕하세요 {{ state.user.user_nm }}님
+        <button v-on:click="logout">로그아웃</button>
+    </div>
+    <div v-else>
+        <input type="text" v-model="user_id">
+        <input type="text" v-model="password">
+        <button v-on:click="login">로그인</button>
+    </div>
+    <h2>{{state.user}}</h2>
 </template>
 
 <script>
 import {useStore} from "vuex";
-import {computed} from "vue";
+import {computed, reactive} from "vue";
 
 export default {
-
     data() {
         return{
             user_id:"",
@@ -19,28 +24,25 @@ export default {
         }
     },
     setup(){
+        const state = reactive({
+            user:{
+                user_nm:""
+            }
+        })
         const store = useStore();
-
-        const user = computed(() => store.getters['login/getUserLogin']);
-        return {store, user}
+        state.user = computed(() => store.getters['login/getUserLogin']);
+        return {store, state}
     },
     methods:{
-        
         login(){
-            
-            console.log(this.user_id);
-            console.log(this.password);
-            console.log(this.store)
-            //console.log(setup)
             const loginObj={
                 user_id : this.user_id,
                 password : this.password
             }
             this.store.dispatch('login/userLogin', loginObj);
-
-            //const user = computed(() => this.store.getters['login/getUserLogin']);
-
-            //console.log("user", user)
+        },
+        logout(){
+            this.state.user.user_nm = "";
         }
     }
 }

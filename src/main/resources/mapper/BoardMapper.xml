@@ -7,15 +7,17 @@
 	   		  board.Title,
 	   		  board.User_Id,
 	   		  board.Content,
-	   		  board.Created_Dt
+	   		  board.Created_Dt,
+	   		  (select count(*) from board) as Board_Count
 	   FROM board JOIN user ON board.User_Id = user.User_Id
 	   WHERE board.User_Id = #{user_id} 
-	   ORDER BY board.Created_Dt desc 
+	   ORDER BY board.Created_Dt DESC
 	   limit #{page_start_num}, #{page_size}
 	</select>
 
 	<resultMap type = "User" id="boardInfo">
 		<result column = "User_Id" property="user_id"/>
+		<result column = "Board_Count" property="board_count"/>
 		<collection column = "User_Id" property="board" javaType="java.util.ArrayList" ofType="Board">
 			<result column = "Title" property="Title"/>
 			<result column = "User_Id" property="User_Id"/>

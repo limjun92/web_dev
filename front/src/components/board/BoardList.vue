@@ -10,9 +10,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(board, index) in boardList[0].board" :key="index">
+                <tr v-for="(board, index) in boardList.board" :key="index">
                     <td>
-                        <!-- <li><router-link to="/Board/1">{{board.title}}</router-link></li> -->
                         <li @click="$router.push('/Board/'+ board.board_id)">{{board.title}}</li>
                     </td>
                     <td>{{board.created_Dt}}

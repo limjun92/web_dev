@@ -33,6 +33,7 @@ const actions = {
             axios.post(`${api_url}/userLogin`, payload)
             .then(res => res.data)
             .then(item => (context.commit('setUserLogin',item)))
+            .then(alert("로그인 완료했습니다"))
             .catch(error => console.error(error));
     }
 }
