@@ -5,9 +5,11 @@
   <UserLogin/>
   <div>
     <router-link to="/">Home</router-link>
-    <router-link to="/about">about</router-link>
-    <router-link to="/MainCalendar">calendar</router-link>
-    <router-link to="/Board">Board</router-link>
+    <div v-if = "state.user.row_id">
+      <router-link to="/about">about</router-link>
+      <router-link to="/MainCalendar">calendar</router-link>
+      <router-link to="/Board">Board</router-link>
+    </div>
   </div>
   <router-view/>
 </template>
@@ -16,6 +18,8 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import AxiosTest from './components/AxiosTest.vue'
 import UserLogin from './components/user/UserLogin.vue'
+import {useStore} from "vuex";
+import {computed, reactive} from "vue";
 
 export default {
   name: 'App',
@@ -23,7 +27,15 @@ export default {
     // HelloWorld,
     AxiosTest,
     UserLogin,
-  }
+  },
+  setup(){
+      const state = reactive({
+            user: null
+      })
+      const store = useStore();
+      state.user = computed(() => store.getters['login/getUserLogin']);
+      return {store, state}
+    },
 }
 </script>
 

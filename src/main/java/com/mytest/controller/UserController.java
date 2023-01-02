@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mytest.dto.User;
+import com.mytest.dto.UserLogin;
 import com.mytest.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class UserController {
     }
     
     @PostMapping("/userLogin")
-	public ResponseEntity<?> userLogin(@RequestBody User UserIdPw) {
+	public ResponseEntity<?> userLogin(@RequestBody UserLogin UserIdPw) {
     	System.out.println(UserIdPw.toString());
 		return ResponseEntity.status(HttpStatus.OK).body(userService.userLogin(UserIdPw));
 	}

@@ -6,11 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.mytest.dto.User;
+import com.mytest.dto.UserLogin;
 
 @Mapper
 @Repository
 public interface UserMapper {
 	List<User> getUserList();
-	int userLoginCheck(User UserIdPw);
-	User userLogin(User UserIdPw);
+	int userLoginCheck(UserLogin UserIdPw);
+	User userLogin(UserLogin UserIdPw);
 }

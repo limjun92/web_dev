@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mytest.dto.User;
+import com.mytest.dto.UserLogin;
 import com.mytest.mappers.UserMapper;
 
 @Service
@@ -21,7 +22,7 @@ public class UserService{
     }
     
     //loginCheck
-    public User userLogin(User UserIdPw) {
+    public User userLogin(UserLogin UserIdPw) {
     	if(userMapper.userLoginCheck(UserIdPw) == 1) {
     		System.out.println("??");
     		System.out.println(UserIdPw.toString());
@@ -29,6 +30,6 @@ public class UserService{
     		return userMapper.userLogin(UserIdPw);
     	}
     	System.out.println("????");
-    	return null;
+    	return new User();
     }   
 }

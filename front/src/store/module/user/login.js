@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 
 let api_url = 'http://localhost:8090/test'
-//import {createStore} from "vuex";
+
 console.log("??")
 
 const state = {
@@ -32,8 +34,8 @@ const actions = {
     userLogin(context, payload){
             axios.post(`${api_url}/userLogin`, payload)
             .then(res => res.data)
-            .then(item => (context.commit('setUserLogin',item)))
-            .then(alert("로그인 완료했습니다"))
+            //springboot에서 null값을 넘겨주면 아무런 내용이 없음 item이 없다면 null값이 들어가도록 한다.
+            .then(item => (context.commit('setUserLogin',item), item?cookies.set("user",item):cookies.set("user",null)))
             .catch(error => console.error(error));
     }
 }
@@ -43,8 +45,8 @@ const mutations = {
         state.allUsers = item;
     },
     setUserLogin(state, item){
-        console.log('item', item)
-        state.user = item
+        console.log('login item', state.user)
+        state.user = item;
     }
 }
 
