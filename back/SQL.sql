@@ -21,6 +21,7 @@ CREATE TABLE user (
 );
 
 insert into user(User_Id, User_Nm, Password, User_Phone_Num, User_Email, Birth_Dt, Created_Dt, Updated_Dt, Last_Connect_Dt) value("jh0508","임준형","Dla13579!!","01094537706", "limjun920508@naver.com", "920508",now(),now(),now());
+insert into user(User_Id, User_Nm, Pasword, User_Phone_Num, User_Email, Birth_Dt, Created_Dt, Updated_Dt, Last_Connect_Dt) value("js1226","임준성","{noop}Dla13579!!","01053377706", "sung@naver.com", "931226",now(),now(),now());
 
 select *
 from user;
