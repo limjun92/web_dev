@@ -5,7 +5,7 @@
   <UserLogin/>
   <div>
     <router-link to="/">Home</router-link>
-    <div v-if = "state.user.row_id">
+    <div v-if = "state.user">
       <router-link to="/about">about</router-link>
       <router-link to="/MainCalendar">calendar</router-link>
       <router-link to="/Board">Board</router-link>

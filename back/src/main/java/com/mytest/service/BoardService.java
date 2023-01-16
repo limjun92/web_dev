@@ -32,5 +32,22 @@ public class BoardService {
     	
         return BoardList;
     }
+
+	public Board getBoardDetail(int boardId) {
+		// TODO Auto-generated method stub
+		
+		//Board BoardDetail = boardMapper.getBoardDetail(boardId);
+		
+		return boardMapper.getBoardDetail(boardId);
+	}
+
+	public Board setBoardWrite(Board boardWrite) {
+		// TODO Auto-generated method stub
+		boardMapper.setBoardWrite(boardWrite);
+		//방금 등록한 게시글을 조회하기 위한 마지막 게시글Id를 가져온다.
+		int boardId = boardMapper.getBoardLastId();
+		return boardMapper.getBoardDetail(boardId);
+	}
+
     
 }

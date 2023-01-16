@@ -47,22 +47,6 @@ public class JwtTokenProvider {
 		System.out.println("초기화 끝");
 	}
 	
-//	public String creatdToken(String userUid, List<String> roles) {
-//		System.out.println("토큰 생성");
-//		Claims claims = Jwts.claims().setSubject(userUid);
-//		claims.put("roles", roles);
-//		Date now = new Date();
-//		
-//		String token = Jwts.builder()
-//				.setClaims(claims)
-//				.setIssuedAt(now)
-//				.setExpiration(new Date(now.getTime()+tokenValidMillisecond))
-//				.signWith(key, SignatureAlgorithm.HS256)
-//				.compact();
-//		
-//		return token;
-//	}
-	
 	public String creatdToken(Authentication authentication) {
 		System.out.println("토큰 생성");
 		String authorities = authentication.getAuthorities().stream()

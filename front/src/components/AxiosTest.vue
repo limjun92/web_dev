@@ -16,7 +16,6 @@ export default {
         const store = useStore();
         const nickname = computed(() => store.state.login.nickname);
         console.log(store)
-        store.dispatch('login/all_users');
 
         const allUser = computed(() => store.getters['login/getAllUser']);
         console.log(allUser);

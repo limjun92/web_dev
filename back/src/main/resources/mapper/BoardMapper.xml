@@ -8,6 +8,8 @@
 	   		  board.User_Id,
 	   		  board.Content,
 	   		  board.Created_Dt,
+	   		  board.Board_id,
+	   		  board.Updated_Dt,
 	   		  (select count(*) from board) as Board_Count
 	   FROM board JOIN user ON board.User_Id = user.User_Id
 	   WHERE board.User_Id = #{user_id} 
@@ -23,8 +25,29 @@
 			<result column = "User_Id" property="User_Id"/>
 			<result column = "Content" property="Content"/>
 			<result column = "Created_Dt" property="Created_Dt"/>
+			<result column = "Board_id" property="Board_id"/>
+			<result column = "Updated_Dt" property="Updated_Dt"/>
 		</collection>
 	</resultMap>
 	
+	<select id = "getBoardDetail" parameterType = "Integer" resultType = "Board">
+		select *
+		from Board
+		where Board_id = #{boardId}
+	</select>
+	
+	<insert id="setBoardWrite" parameterType="Board">
+	    insert into board (User_Id, Title, Content, Created_Dt, Updated_Dt)
+        values (#{User_Id}, #{title}, #{content}, now(), now())
+	</insert>
+	
+	<!-- 등록 후에 해당 유저의 마지막 BoardDetail조회를 위한 BoardId를 가져온다 -->
+	<!-- BoardId로 BoardDetail정보를 조회하기 때문 -->
+	<select id="getBoardLastId" resultType = "Integer">
+	SELECT Board_id
+	  FROM board
+	  ORDER BY board.Created_Dt DESC
+	  limit 0, 1
+	</select>
 	
 </mapper>
