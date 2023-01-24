@@ -65,20 +65,47 @@ from board;
 
 SELECT * FROM board ORDER BY created_dt desc limit 0, 5;
 
-drop table board;
+drop table coinKey;
+      
 
-SELECT user.User_Id,
-	  board.Title,
-	  board.User_Id,
-	  board.Content,
-	  board.Created_Dt,
-      (select count(*) from board) as a
-FROM board JOIN user ON board.User_Id = user.User_Id
-WHERE board.User_Id = "jh0508" 
-ORDER BY board.Created_Dt desc 
-limit 0, 5;
+CREATE TABLE coinKey
+(
+    `User_Id`      VARCHAR(50)      NOT NULL, 
+    `Access_Key`       VARCHAR(300)      NOT NULL, 
+    `Secret_Key`     VARCHAR(300)    NOT NULL
+);
 
-	SELECT Board_id
-	  FROM board
-	  ORDER BY board.Created_Dt DESC
-	  limit 0, 1
+insert into coinKey(User_Id, Access_Key, Secret_Key) value(1,"qehbMeAi05fyx3RxhNpcIIh8cdV2pVzk17lvSR2Q","mhn5mmuWOdJz0Au8ObxJAwNYKj6bv0ILf8ypdCpu");
+
+select *
+from coinKey;
+
+drop TABLE coinAllInfo;
+
+CREATE TABLE coinAllInfo
+(
+	`Coin_Id`    INT              NOT NULL    AUTO_INCREMENT COMMENT '코인ID', 
+    `User_Id`    INT       NOT NULL    COMMENT 'User_Id', 
+    `Coin_Nm`    VARCHAR(50)      NOT NULL    COMMENT '이름', 
+    `Type` 	     VARCHAR(50)      NOT NULL    default 'N' COMMENT '타입', 
+    `Buy_Cnt`    INT      default 0,
+    `Sell_Cnt`   INT      default 0,
+    `Use_Yn`     VARCHAR(10)      NOT NULL    COMMENT '사용유무', 
+    `Price`      INT      default 0           COMMENT '현재가격',
+    `Fix`        INT      default 0           COMMENT '구매시점가격',
+    `Lock_Top`   INT      default 0           COMMENT '구매제한가격상단',
+    `Lock_Bottom`       INT      default 0    COMMENT '구매제한가격하단',
+    `Use_Krw`    INT      default 0           COMMENT '사용금액',
+    `Back_Krw`   INT      default 0           COMMENT '회수금액',
+    `Re_Get`     INT      default 0           COMMENT '순이익',
+    `Created_dt`  DATETIME         default now(),
+    `Updated_dt`  DATETIME         default now(),
+    PRIMARY KEY (Coin_Id)
+);
+
+select *
+from coinAllInfo;
+
+insert into coinAllInfo(Coin_Nm, User_Id, Type, Use_Yn) value("KRW-BTC",1, "TEST", "Y");
+insert into coinAllInfo(Coin_Nm, User_Id, Type, Use_Yn) value("KRW-ETH",1, "TEST", "Y");
+

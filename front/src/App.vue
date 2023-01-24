@@ -9,6 +9,7 @@
       <router-link to="/about">about</router-link>
       <router-link to="/MainCalendar">calendar</router-link>
       <router-link to="/Board">Board</router-link>
+      <router-link to="/coin">coin</router-link>
     </div>
   </div>
   <router-view/>

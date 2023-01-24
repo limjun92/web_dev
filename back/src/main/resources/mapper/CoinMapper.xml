@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mytest.coin.mapper.CoinMapper">
+	<select id="getCoinKey" parameterType="Integer" resultType="CoinKeyDto">
+	   SELECT * 
+	   FROM coinKey
+	   WHERE User_Id = #{user_id};
+	</select>
+  
+  	<select id="getCoinAllInfo" parameterType="Integer" resultType="CoinAllInfoDto">
+	   SELECT * 
+	   FROM coinAllInfo
+	   WHERE User_Id = #{user_id};
+	</select>
+	
+	<update id="coinInfoUpdate" parameterType="CoinAllInfoDto">
+		UPDATE coinAllInfo
+		SET Use_Yn = #{Use_Yn}, Fix = #{Fix}, Lock_Top = #{Lock_Top}, Lock_Bottom = #{Lock_Bottom}
+		WHERE Coin_Id = #{Coin_Id}
+	</update>
+	
+</mapper>

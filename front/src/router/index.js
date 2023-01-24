@@ -5,6 +5,7 @@ import MainCalendar from "../views/MainCalendar.vue";
 import BoardMain from "../views/BoardMain.vue";
 import BoardDetail from "../components/board/boardDetail.vue";
 import BoardWrite from "../components/board/boardWrite.vue";
+import CoinMain from "../views/coinMain.vue";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
       {path : 'write', name: BoardWrite, component: BoardWrite}
     ],
   },
+  {
+    path: "/coin",
+    name: "Coin",
+    component: CoinMain
+  }
   // {
   //   path: "/boardDetail",
   //   name: "boardDetail",

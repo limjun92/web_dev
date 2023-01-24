@@ -33,7 +33,7 @@ public class JwtTokenProvider {
 	
 	private Key key;
 	private String secretKey = "webfirew1232tdsfg43r243r23r23r23r2fdsf12312312312312312312123123123123123123123123343423e2efdf436trhdgfhdr5yd5sfgdfg5sood";
-	private final long tokenValidMillisecond = 1000L * 60 * 60;
+	private final long tokenValidMillisecond = 1000L * 60 * 60 * 1000;
 	
 	@PostConstruct
 	protected void init(){
@@ -55,7 +55,6 @@ public class JwtTokenProvider {
 		
 		long now = (new Date()).getTime();
 		Date validity = new Date(now + this.tokenValidMillisecond);
-		System.out.println("토큰 생성 2");
 		return Jwts.builder()
 				.setSubject(authentication.getName())
 				.claim(AUTHORITIES_KEY, authorities)

@@ -10,7 +10,7 @@
 	   		  board.Created_Dt,
 	   		  board.Board_id,
 	   		  board.Updated_Dt,
-	   		  (select count(*) from board) as Board_Count
+	   		  (select count(*) from board where User_Id = #{user_id}) as Board_Count
 	   FROM board JOIN user ON board.User_Id = user.User_Id
 	   WHERE board.User_Id = #{user_id} 
 	   ORDER BY board.Created_Dt DESC
