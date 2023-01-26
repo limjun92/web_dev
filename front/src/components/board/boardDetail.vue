@@ -3,9 +3,13 @@
     <h1>boardDetail</h1>
     {{ $route.params.id }}
     {{ boardDetail }}
-    <h2> {{boardDetail.title}}</h2>
-    <Markdown :source="boardDetail.content" />
-</div>
+    <div class="container">
+        <div class="containerBoardDetail">
+            <div class="title"><h2> {{boardDetail.title}}</h2></div>
+            <div class="content"><Markdown :source="boardDetail.content" /></div>
+        </div>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -36,5 +40,26 @@ export default {
 </script>
 
 <style>
-
+.container{
+    display: flex;
+    justify-content: center;
+    
+}
+.containerBoardDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-style: solid;
+    width:60%;
+}
+.title{
+    background-color: #BBDEFB;
+    text-align:left;
+    padding: 40px;
+}
+.content{
+    background-color: #fbe2bb;
+    text-align: left;
+    padding: 40px;
+}
 </style>

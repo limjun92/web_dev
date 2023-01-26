@@ -9,7 +9,7 @@
         <input type="text" v-model="password">
         <button v-on:click="login">로그인</button>
     </div>
-    <h2>{{JSON.stringify(state.user)}}</h2>
+    <!--<h2>{{JSON.stringify(state.user)}}</h2>-->
 
 </template>
 
