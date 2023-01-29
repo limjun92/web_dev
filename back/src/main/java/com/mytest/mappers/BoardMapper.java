@@ -14,4 +14,5 @@ public interface BoardMapper {
 	Board getBoardDetail(int boardId);
 	void setBoardWrite(Board boardWrite);
 	int getBoardLastId();
+	void setBoardUpdate(Board boardWrite);
 }

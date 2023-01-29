@@ -1,5 +1,6 @@
 <template>
-    <h1>게시글 등록</h1>
+    <h1>게시글 수정</h1>
+        
         <div class="AddWrap">
             <button v-on:click="editForm()">edit</button>
             <button v-on:click="previewForm()">preview</button>
@@ -11,7 +12,7 @@
                 <tr>
                     <th>제목</th>
                     <td v-if = "editFlag==true"><input type="text" v-model="title"/></td>
-                    <td v-else class="title" >{{ title }}</td>
+                    <td v-else class="title">{{ title }}</td>
                 </tr>
                 <tr v-if = "editFlag==true">
                     <th>내용</th>
@@ -24,7 +25,7 @@
             </table>
 		</div>
         <div class="btnWrap">
-			<button v-on:click="boardWrite()">등록</button>
+			<button v-on:click="boardUpdate()">수정</button>
         </div>	
 </template>
 
@@ -45,13 +46,21 @@ export default {
             editFlag : true
         }
     },
+    mounted(){
+        console.log("mounted")
+    },  
+    created(){
+        console.log("created")
+        console.log(this.$route.query.boardId)
+        this.title = this.boardDetail.title;
+        this.content = this.boardDetail.content;
+    },
     setup(){
         const store = useStore();
         const boardDetail = computed(() => store.getters['board/getBoardDetail'])
         return {store, boardDetail}
     },
     watch: {
-        //등록후 변화를 감지해서 등록한 게시물로 이동 
         boardDetail: function () {
             console.log("watch")
             console.log(JSON.stringify(this.boardDetail.board_id))
@@ -59,13 +68,15 @@ export default {
         }
     },
     methods:{
-        boardWrite(){
+        boardUpdate(){
             const loginObj={
                 title : this.title,
                 content : this.content,
-                user_Id : 'jh0508'
+                user_Id : 'jh0508',
+                board_id : this.$route.query.board_id
             }
-            this.store.dispatch('board/boardWrite', loginObj);
+            console.log(loginObj)
+            this.store.dispatch('board/boardUpdate', loginObj);
         },
         editForm(){
             this.editFlag = true;
@@ -79,6 +90,8 @@ export default {
 
 <style scoped>
 .tbAdd{
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
     width:100%;
 }
@@ -90,12 +103,13 @@ export default {
 .tbAdd td{padding:10px 10px; box-sizing:border-box; vertical-align: top;}
 .tbAdd td input{width:100%; min-height:30px; box-sizing:border-box; padding:0 10px;}
 .tbAdd td textarea{width:100%; min-height:300px; padding:10px; box-sizing:border-box;}
-.btnWrap{text-align:center; margin:20px 0 0 0;}
 .btnWrap a{margin:0 10px;}
 
 .markdown{
     text-align: left;
     word-wrap: break-word;
-    
+}
+.title{
+    text-align: left;
 }
 </style>

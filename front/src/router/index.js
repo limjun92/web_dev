@@ -5,6 +5,7 @@ import MainCalendar from "../views/MainCalendar.vue";
 import BoardMain from "../views/BoardMain.vue";
 import BoardDetail from "../components/board/boardDetail.vue";
 import BoardWrite from "../components/board/boardWrite.vue";
+import BoardUpdate from "../components/board/boardUpdate.vue";
 import CoinMain from "../views/coinMain.vue";
 
 const routes = [
@@ -28,8 +29,9 @@ const routes = [
     name: "Board",
     component: BoardMain,
     children:[
-      {path : ':id', name: BoardDetail, component: BoardDetail, props: true},
-      {path : 'write', name: BoardWrite, component: BoardWrite}
+      {path : ":id", name: "BoardDetail", component: BoardDetail, props: true},
+      {path : "write", name: "BoardWrite", component: BoardWrite},
+      {path : "update", name: "BoardUpdate", component: BoardUpdate},
     ],
   },
   {
@@ -40,7 +42,6 @@ const routes = [
   // {
   //   path: "/boardDetail",
   //   name: "boardDetail",
-
   //   component: boardDetail,
   // },
 ];

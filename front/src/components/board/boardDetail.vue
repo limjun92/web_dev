@@ -1,8 +1,9 @@
 <template>
     <div>
     <h1>boardDetail</h1>
-    {{ $route.params.id }}
-    {{ boardDetail }}
+    <!-- {{ $route.params.id }} -->
+    <!-- {{ boardDetail }} -->
+    <button v-on:click="boardUpdate()">수정</button>
     <div class="container">
         <div class="containerBoardDetail">
             <div class="title"><h2> {{boardDetail.title}}</h2></div>
@@ -23,42 +24,51 @@ export default {
     components: {
         Markdown
     },
+    data(){
+        return{
+            router:this.$router
+        }
+    },
     setup(){
         const store = useStore();
         const boardDetail = computed(() => store.getters['board/getBoardDetail']);
         console.log(boardDetail)
         return {boardDetail}
     },
+    created(){
+        console.log("created")
+    },
     mouted(){
         console.log("mouted")
         //this.store.dispatch('board/boardDetail', this.route.params.id);
-    },  
-    created(){
-        console.log("created")
-    }
+    },
+    methods:{
+        boardUpdate(){
+            this.router.push({
+                name:"BoardUpdate",
+                query:{board_id: this.boardDetail.board_id}
+            })
+        }
+    }  
+
 }
 </script>
 
-<style>
+<style scoped>
 .container{
     display: flex;
-    justify-content: center;
-    
+    border-style: solid;
 }
 .containerBoardDetail {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-style: solid;
-    width:60%;
 }
 .title{
-    background-color: #BBDEFB;
     text-align:left;
     padding: 40px;
 }
 .content{
-    background-color: #fbe2bb;
     text-align: left;
     padding: 40px;
 }

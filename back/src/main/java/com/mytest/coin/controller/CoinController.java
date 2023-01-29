@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mytest.coin.dto.CoinAllInfoDto;
 import com.mytest.coin.service.CoinService;
-import com.mytest.dto.Board;
-import com.mytest.dto.User;
-import com.mytest.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
 

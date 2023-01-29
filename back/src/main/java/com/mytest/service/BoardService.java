@@ -49,5 +49,13 @@ public class BoardService {
 		return boardMapper.getBoardDetail(boardId);
 	}
 
+	public Board setBoardUpdate(Board boardUpdate) {
+		// TODO Auto-generated method stub
+		System.out.println("Update");
+		boardMapper.setBoardUpdate(boardUpdate);
+		
+		return boardMapper.getBoardDetail(boardUpdate.getBoard_id());
+	}
+
     
 }

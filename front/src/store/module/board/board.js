@@ -37,6 +37,12 @@ const actions = {
         .then(res => res.data)
         .then(item => (context.commit('setBoardDetail',item)))
         .catch(error => console.error(error));
+    },
+    boardUpdate(context, storeObj){
+        axios.post(`${api_url}/BoardUpdate`, storeObj)
+        .then(res => res.data)
+        .then(item => (context.commit('setBoardDetail',item)))
+        .catch(error => console.error(error));
     }
 }
 

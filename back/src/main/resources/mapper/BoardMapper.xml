@@ -41,6 +41,12 @@
         values (#{User_Id}, #{title}, #{content}, now(), now())
 	</insert>
 	
+	<update id="setBoardUpdate" parameterType="Board">
+	    update board 
+	    set Title = #{Title}, Content = #{Content}, Updated_Dt = now()
+        where Board_id = #{Board_id}
+	</update>
+	
 	<!-- 등록 후에 해당 유저의 마지막 BoardDetail조회를 위한 BoardId를 가져온다 -->
 	<!-- BoardId로 BoardDetail정보를 조회하기 때문 -->
 	<select id="getBoardLastId" resultType = "Integer">
