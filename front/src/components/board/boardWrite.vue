@@ -1,5 +1,7 @@
 <template>
     <h1>게시글 등록</h1>
+        <textarea v-model="contents"/>
+        <div contenteditable="false">{{ contents }}</div>
         <div class="AddWrap">
             <button v-on:click="editForm()">edit</button>
             <button v-on:click="previewForm()">preview</button>
@@ -39,6 +41,7 @@ export default {
     },
     data() {
         return {
+            contents:'<span>테스트코드</span>',
             title: "",
             content: "",
             router : this.$router,

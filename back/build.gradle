@@ -76,6 +76,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-circuitbreaker
 	implementation group: 'io.github.resilience4j', name: 'resilience4j-circuitbreaker', version: '1.7.1'
 	
+	// https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+	implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.3'
+	
 }
 
 tasks.named('test') {

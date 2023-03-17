@@ -4,31 +4,31 @@
   <!-- <AxiosTest/> -->
   <div class="container">
     <header class="header">
-      <div class="header_top">header</div>
-      <div class="title_left">A</div>
-      <div class="title">title</div>
-      <div class="title-right">B</div>
+      <div v-if = "if_coin == false" class="header_top">header</div>
+      <div v-if = "if_coin == false" class="title_left">A</div>
+      <div v-if = "if_coin == false" class="title">title</div>
+      <div v-if = "if_coin == false" class="title-right">B</div>
       <div class="menu_item">
         <span class = "menu">
-          <router-link class="menu-item" to="/">Home</router-link>
+          <router-link class="menu-item" to="/" v-on:click="click_home">Home</router-link>
           <!-- <span v-if = "state.user"> -->
           <router-link class="menu-item" v-if = "state.user" to="/about">about</router-link>
           <router-link class="menu-item" v-if = "state.user" to="/MainCalendar">calendar</router-link>
           <router-link class="menu-item" v-if = "state.user" to="/Board">Board</router-link>
-          <router-link class="menu-item" v-if = "state.user" to="/coin">coin</router-link>
+          <router-link class="menu-item" v-if = "state.user" to="/coin" v-on:click="click_coin">coin</router-link>
           <!-- </span> -->
         </span>
       </div>
     </header>
-    <div class="empty">Empty</div>
-    <div class="main_left">C</div>
+    <div class="empty" v-if = "if_coin == false" >Empty</div>
+    <div class="main_left" v-if = "if_coin == false" >C</div>
     <div class="main">main
       <UserLogin/>
       <router-view/>
     </div>
-    <div class="main_right">D</div>
-    <div class="empty2">Empty2</div>
-    <footer class="footer">footer</footer>
+    <div class="main_right" v-if = "if_coin == false" >D</div>
+    <div class="empty2" v-if = "if_coin == false" >Empty2</div>
+    <footer class="footer" v-if = "if_coin == false" >footer</footer>
   </div>
 
   
@@ -48,6 +48,11 @@ export default {
     //AxiosTest,
     UserLogin,
   },
+  data(){
+        return{
+            if_coin : false
+        }
+    },
   setup(){
       const state = reactive({
             user: null
@@ -56,6 +61,14 @@ export default {
       state.user = computed(() => store.getters['login/getUserLogin']);
       return {store, state}
     },
+  methods:{
+    click_coin(){
+      this.if_coin = true;
+    },
+    click_home(){
+      this.if_coin = false;
+    }
+  }
 }
 </script>
 

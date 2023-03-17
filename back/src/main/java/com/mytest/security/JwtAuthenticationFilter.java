@@ -36,9 +36,9 @@ public class JwtAuthenticationFilter extends GenericFilterBean{
 		if(StringUtils.hasText(jwt) && jwtTokenProvider.validateToken(jwt)) {
 			Authentication authentication = jwtTokenProvider.getAuthentication(jwt);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
-			System.out.println("토큰이 있습니다.");
+//			System.out.println("토큰이 있습니다.");
 		}else {
-			System.out.println("토큰이 없습니다.");
+//			System.out.println("토큰이 없습니다.");
 		}
 		
 		chain.doFilter(request, response);

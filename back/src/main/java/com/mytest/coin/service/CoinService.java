@@ -18,6 +18,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.mytest.coin.dto.CoinAllInfoDto;
 import com.mytest.coin.dto.CoinKeyDto;
 import com.mytest.coin.mapper.CoinMapper;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 @Service
 public class CoinService {
@@ -64,8 +69,8 @@ public class CoinService {
             
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
-            String data = EntityUtils.toString(entity, "UTF-8");
-            		
+            String data = EntityUtils.toString(entity, "UTF-8");   
+            
             JSONArray jsonArray = new JSONArray(data);
             
             return jsonArray.toString();
@@ -75,8 +80,9 @@ public class CoinService {
 		return null;
 	}
 
-	public void getCoinOrder(int user_id) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-
+	public String getCoinOrder(int user_id, String coinNm) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		
+		System.out.println("======= " + user_id + " " + coinNm);
 		long beforeTime = System.currentTimeMillis();
 		
 		CoinKeyDto coinKey = coinMapper.getCoinKey(user_id);
@@ -85,7 +91,7 @@ public class CoinService {
         secretKey = coinKey.getSecret_Key();
 		
 		HashMap<String, String> params = new HashMap<>();
-        params.put("market", "KRW-BTC");
+        params.put("market", coinNm);
 
         ArrayList<String> queryElements = new ArrayList<>();
         for(Map.Entry<String, String> entity : params.entrySet()) {
@@ -124,10 +130,34 @@ public class CoinService {
             long secDiffTime = afterTime - beforeTime; //두 시간에 차 계산
             System.out.println("시간차이(m) : "+secDiffTime);
 
-            System.out.println(EntityUtils.toString(entity, "UTF-8"));
+            //System.out.println(EntityUtils.toString(entity, "UTF-8"));
+            String data = EntityUtils.toString(entity, "UTF-8");
+            
+            //JSONArray jsonArray = new JSONArray(data);
+            
+            //JSONObject jsonObject = new JSONObject(data);
+            
+           return data;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
+	}
+	
+	//현재가 조회
+	public String getCurrentPrice(String markets) throws IOException {
+		OkHttpClient client = new OkHttpClient();
+
+		
+		Request request = new Request.Builder()
+		  .url("https://api.upbit.com/v1/ticker?markets=" + markets)
+		  .get()
+		  .addHeader("accept", "application/json")
+		  .build();
+
+		Response response = client.newCall(request).execute();
+		
+		return response.body().string();
 	}
 	
 	//DB 코인 정보 가져오기
@@ -136,14 +166,13 @@ public class CoinService {
 		return coinMapper.getCoinAllInfo(user_id);
 	}
 	
-	//DB 코인 정보 업데이트
+	//DB 코인 정보 업데이트 
 	public List<CoinAllInfoDto> coinInfoUpdate(CoinAllInfoDto coinInfoUpdate) {
 		// TODO Auto-generated method stub
 		System.out.println(coinInfoUpdate.toString());
 		int flag = coinMapper.coinInfoUpdate(coinInfoUpdate);
 		System.out.println(flag);
 		return coinMapper.getCoinAllInfo(coinInfoUpdate.getUser_Id());
-		
 	}
 
 }

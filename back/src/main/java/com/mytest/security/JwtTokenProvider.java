@@ -63,8 +63,8 @@ public class JwtTokenProvider {
 	}
 	
 	public Authentication getAuthentication(String token) {
-		System.out.println("인증정보 조회 ");
-		System.out.println(this.getUsername(token));
+		//System.out.println("인증정보 조회 ");
+		//System.out.println(this.getUsername(token));
 		UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUsername(token));
 		
 		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());

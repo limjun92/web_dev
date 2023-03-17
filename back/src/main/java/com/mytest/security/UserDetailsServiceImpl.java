@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		//LOGGER.info("[loadUserByUsername] loadUserByUsername 수행. username : {}", username);
-		System.out.println("보안 : Serviec :" + user_id);
+		//System.out.println("보안 : Serviec :" + user_id);
 		return userDtoMapper.getByUid(user_id);
 	}
 
