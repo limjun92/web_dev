@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -45,11 +47,12 @@ public class CoinService {
 	//내가 가진 코인 정보 조회
 	public String getCoinDashBoard(int user_id) {
 		System.out.println(coinMapper.getCoinKey(user_id));
-		
 		CoinKeyDto coinKey = coinMapper.getCoinKey(user_id);
 		
 		accessKey = coinKey.getAccess_Key();
         secretKey = coinKey.getSecret_Key();
+        System.out.println("세션에 키값 저장");
+        
         //String serverUrl = "https://api.upbit.com";
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);

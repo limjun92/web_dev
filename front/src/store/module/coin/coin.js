@@ -34,8 +34,8 @@ const actions = {
     },
 
     //DB코인 정보를 조회해온다.
-    CoinAllInfo(context, user_id){
-        axios.get(`${api_url}/CoinAllInfo/${user_id}/`)
+    async CoinAllInfo(context, user_id){
+        await axios.get(`${api_url}/CoinAllInfo/${user_id}/`)
         .then(res => res.data)
         .then(item => (context.commit('setCoinAllInfo',item)))
         .catch(error => console.error(error));
@@ -73,7 +73,7 @@ const mutations = {
         state.CoinAccounts = item
     },
     setCoinAllInfo(state, item){
-        console.log('item', item)
+        console.log('item CoinAllInfo', item)
         state.CoinAllInfo = item
     },
     setCoinOrder(state, item){
@@ -81,7 +81,7 @@ const mutations = {
         state.coinOrder = item;
     },
     setCurrentPrice(state, item){
-        console.log('item', item)
+        console.log('item CurrentPrice', item)
         state.CurrentPrice = item;
     }
 }

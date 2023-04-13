@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Data;
 
+//DB정보 관련 내용 가져오는 DTO
 @Data
 public class CoinAllInfoDto {
 
@@ -14,13 +15,13 @@ public class CoinAllInfoDto {
 	private int Buy_Cnt;
 	private int Sell_Cnt;
 	private String Use_Yn;
-	private int Price;
-	private int Fix;
-	private int Lock_Top;
-	private int Lock_Bottom;
-	private int Use_Krw;
-	private int Back_Krw;
-	private int Re_Get;
+	private double Price;
+	private double Fix;
+	private double Lock_Top;
+	private double Lock_Bottom;
+	private float Use_Krw;
+	private float Back_Krw;
+	private float Re_Get;
 	private Timestamp Created_dt;
 	private Timestamp Updated_dt;
 	

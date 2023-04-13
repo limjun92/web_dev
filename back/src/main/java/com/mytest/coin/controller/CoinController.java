@@ -52,7 +52,6 @@ public class CoinController {
     //현재가 조회
     @GetMapping("/getCurrentPrice/{markets}")
     public String getCurrentPrice(@PathVariable String markets) throws IOException {
-    	System.out.println(markets);
     	return coinService.getCurrentPrice(markets);
     }
 }

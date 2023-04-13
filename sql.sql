@@ -91,17 +91,32 @@ CREATE TABLE coinAllInfo
     `Buy_Cnt`    INT      default 0,
     `Sell_Cnt`   INT      default 0,
     `Use_Yn`     VARCHAR(10)      NOT NULL    COMMENT '사용유무', 
-    `Price`      INT      default 0           COMMENT '현재가격',
-    `Fix`        INT      default 0           COMMENT '구매시점가격',
-    `Lock_Top`   INT      default 0           COMMENT '구매제한가격상단',
-    `Lock_Bottom`       INT      default 0    COMMENT '구매제한가격하단',
-    `Use_Krw`    INT      default 0           COMMENT '사용금액',
-    `Back_Krw`   INT      default 0           COMMENT '회수금액',
-    `Re_Get`     INT      default 0           COMMENT '순이익',
+    `Price`      double      default 0           COMMENT '현재가격',
+    `Fix`        double      default 0           COMMENT '구매시점가격',
+    `Lock_Top`   double      default 0           COMMENT '구매제한가격상단',
+    `Lock_Bottom`       double      default 0    COMMENT '구매제한가격하단',
+    `Use_Krw`    float      default 0           COMMENT '사용금액',
+    `Back_Krw`   float      default 0           COMMENT '회수금액',
+    `Re_Get`     float      default 0           COMMENT '순이익',
     `Created_dt`  DATETIME         default now(),
     `Updated_dt`  DATETIME         default now(),
     PRIMARY KEY (Coin_Id)
 );
+
+ALTER TABLE coinAllInfo MODIFY COLUMN Fix double;
+ALTER TABLE coinAllInfo MODIFY COLUMN Price double;
+ALTER TABLE coinAllInfo MODIFY COLUMN Lock_Top double;
+ALTER TABLE coinAllInfo MODIFY COLUMN Lock_Bottom double;
+ALTER TABLE coinAllInfo MODIFY COLUMN Use_Krw float;
+ALTER TABLE coinAllInfo MODIFY COLUMN Back_Krw float;
+ALTER TABLE coinAllInfo MODIFY COLUMN Re_Get float;
+
+
+UPDATE allTradeInfo
+SET Use_Krw = Use_Krw + 200, Buy_Cnt = Buy_Cnt + 1
+where Coin_Nm = "KRW-BTC";
+
+desc coinallinfo;
 
 select *
 from coinAllInfo;
@@ -109,3 +124,31 @@ from coinAllInfo;
 insert into coinAllInfo(Coin_Nm, User_Id, Type, Use_Yn) value("KRW-BTC",1, "TEST", "Y");
 insert into coinAllInfo(Coin_Nm, User_Id, Type, Use_Yn) value("KRW-ETH",1, "TEST", "Y");
 
+# 이력용 테이블
+
+drop table allTradeInfo;
+
+CREATE TABLE allTradeInfo(
+	`tradeId`   VARCHAR(50) 			COMMENT 'uuid',
+	`userId` INT 						COMMENT '고객ID',
+	`market`  VARCHAR(10) 				COMMENT '코인명',
+    `type`   VARCHAR(5) 				COMMENT '타입',
+	`volume`   double  default 0 		COMMENT '코인 소유량',
+    `sellPrice`	   double  default 0 	COMMENT '판매희망코인가치',
+    `buyPrice` double default 0 		COMMENT '구매시코인가지',
+    `pay`      float   default 0 		COMMENT '원으로구매가격',
+    `sellYn`   VARCHAR(5)  				COMMENT '코인판매플래그', 
+	`createdDt` VARCHAR(50) 			COMMENT '생성일자'
+    
+);
+
+Insert Into allTradeInfo
+values("??",1,"??",123,123,123,"??","??","??");
+
+select *
+from allTradeInfo;
+
+
+SELECT * 
+	   FROM allTradeInfo
+	   ORDER BY createdDt DESC
